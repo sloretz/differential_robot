@@ -6,10 +6,12 @@ project(pi_motors)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
   rospy
+  roscpp
+  geometry_msgs
 )
 
 ## System dependencies are found with CMake's conventions
-# find_package(Boost REQUIRED COMPONENTS system)
+find_package(Boost REQUIRED COMPONENTS system)
 
 
 ## Uncomment this if the package has a setup.py. This macro ensures
@@ -98,10 +100,10 @@ catkin_python_setup()
 ## CATKIN_DEPENDS: catkin_packages dependent projects also need
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
-#  INCLUDE_DIRS include
-#  LIBRARIES pi_motors
-#  CATKIN_DEPENDS rospy
-#  DEPENDS system_lib
+  INCLUDE_DIRS include
+  LIBRARIES pi_motors
+  CATKIN_DEPENDS rospy
+  DEPENDS system_lib
 )
 
 ###########
@@ -116,9 +118,9 @@ include_directories(
 )
 
 ## Declare a C++ library
-# add_library(pi_motors
-#   src/${PROJECT_NAME}/pi_motors.cpp
-# )
+   add_library(pi_motors
+   src/hw_lib/28byj48.cpp
+   )
 
 ## Add cmake target dependencies of the library
 ## as an example, code may need to be generated before libraries
@@ -126,16 +128,16 @@ include_directories(
 # add_dependencies(pi_motors ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Declare a C++ executable
-# add_executable(pi_motors_node src/pi_motors_node.cpp)
+add_executable(pi_hw_node src/hardware_node.cpp)
 
 ## Add cmake target dependencies of the executable
 ## same as for the library above
 # add_dependencies(pi_motors_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Specify libraries to link a library or executable target against
-# target_link_libraries(pi_motors_node
-#   ${catkin_LIBRARIES}
-# )
+target_link_libraries(pi_hw_node
+  ${catkin_LIBRARIES}
+)
 
 #############
 ## Install ##
