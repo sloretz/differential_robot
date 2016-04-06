@@ -114,6 +114,7 @@ catkin_package(
 ## Your package locations should be listed before other locations
 # include_directories(include)
 include_directories(
+  include
   ${catkin_INCLUDE_DIRS}
 )
 
@@ -135,7 +136,7 @@ add_executable(pi_hw_node src/hardware_node.cpp)
 # add_dependencies(pi_motors_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Specify libraries to link a library or executable target against
-target_link_libraries(pi_hw_node
+target_link_libraries(pi_hw_node pi_motors
   ${catkin_LIBRARIES}
 )
 
